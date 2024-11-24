@@ -1,0 +1,59 @@
+### Successful Request
+# This test sends a valid API key and a valid TCKN.
+POST http://localhost:2999/citizen-info
+Content-Type: application/json
+x-api-key: e144521b3c4f772e5bd6bf639410c8df7e01e76bbe4ac55afc7ffafee34b1a8d
+
+{
+  "tckn": "45678912345"
+}
+
+### Invalid API Key
+# This test uses an invalid API key to ensure the API rejects the request.
+POST http://localhost:2999/citizen-info
+Content-Type: application/json
+x-api-key: 7bb175e2-46c7-4c6a-b889-b7e74116c831
+
+{
+  "tckn": "45678912345"
+}
+
+### Missing TCKN
+# This test sends an empty TCKN to verify the server's validation for required fields.
+POST http://localhost:2999/citizen-info
+Content-Type: application/json
+x-api-key: e144521b3c4f772e5bd6bf639410c8df7e01e76bbe4ac55afc7ffafee34b1a8d
+
+{
+  "tckn": ""
+}
+
+### Invalid TCKN Format
+# This test sends an incorrectly formatted TCKN (e.g., less than 11 digits).
+POST http://localhost:2999/citizen-info
+Content-Type: application/json
+x-api-key: e144521b3c4f772e5bd6bf639410c8df7e01e76bbe4ac55afc7ffafee34b1a8d
+
+{
+  "tckn": "123"
+}
+
+### User Not Found
+# This test uses a TCKN that does not exist in the mock database.
+POST http://localhost:2999/citizen-info
+Content-Type: application/json
+x-api-key: e144521b3c4f772e5bd6bf639410c8df7e01e76bbe4ac55afc7ffafee34b1a8d
+
+{
+  "tckn": "00000000000"
+}
+
+### Get all registered routes
+GET http://localhost:2999/routes
+Content-Type: application/json
+
+###
+
+### Get current API key
+GET http://localhost:2999/current-api-key
+Content-Type: application/json
